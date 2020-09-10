@@ -48,5 +48,8 @@ module.exports = function rngExcludedRanges(minimum, maximum, ranges) {
             return position;
         });
     }
+    else {
+        return randomNumber(minimum, maximum);
+    }
 };
 //# sourceMappingURL=index.js.map

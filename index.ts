@@ -1,4 +1,3 @@
-// class ZipToTz {
 module.exports = function rngExcludedRanges(minimum, maximum, ranges?) {
     const randomNumber = require("random-number-csprng");
     if (ranges) {
@@ -50,19 +49,7 @@ module.exports = function rngExcludedRanges(minimum, maximum, ranges?) {
                 } while (continueWhile)
                 return position
             })
+    } else {
+        return randomNumber(minimum, maximum)
     }
-
 }
-// }
-
-// module.exports = new ZipToTz();
-//
-// const newClass = new ZipToTz();
-//
-//
-// // const result = newClass.randomNumberGenerator(1, 10000000000, [{minimum: 2001, maximum: 2000000}, {
-// //     minimum: 100,
-// //     maximum: 1000
-// // }, {minimum: 1001, maximum: 2000}]);
-// const result = randomNumberGenerator(1, 10000000000, [{minimum: 200001, maximum: 6282835199}]);
-// result.then((result => console.log('result', result)))
