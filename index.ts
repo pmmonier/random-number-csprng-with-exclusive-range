@@ -3,13 +3,14 @@ module.exports = function rngExcludedRanges(minimum, maximum, ranges?) {
     if (ranges) {
         let numberOfValuesTExclude = 0;
         ranges.sort((current, next) => (current.minimum > next.minimum) ? 1 : (current.minimum === next.minimum) ? ((current.maximum > next.maximum) ? 1 : -1) : -1).forEach(function (range, index, arr) {
-            if (!range.minimum || !range.maximum) {
+            if ((!range.minimum && range.minimum != 0) || !range.maximum) {
+                console.log('range', range)
                 throw new Error('Missing minimum or maximum in RANGES')
             }
             if (range.minimum > range.maximum) {
                 throw new Error('The minimum must be lower than maximum in RANGES')
             }
-            if (range.minimum <= minimum) {
+            if (range.minimum < minimum) {
                 throw new Error('The minimum in RANGES must be higher than minimum parameter')
             }
             if (range.maximum > maximum) {
@@ -21,7 +22,12 @@ module.exports = function rngExcludedRanges(minimum, maximum, ranges?) {
                 }
             }
             numberOfValuesTExclude += range.maximum - range.minimum;
+            if (range.minimum != minimum)
+                numberOfValuesTExclude++
         })
+
+        if (maximum - numberOfValuesTExclude === 0)
+            throw new Error('Excluded ranges cannot cover all given range.');
 
         return new Promise((resolve, reject) => {
             resolve(randomNumber(minimum, maximum - numberOfValuesTExclude));
