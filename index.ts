@@ -4,7 +4,6 @@ module.exports = function rngExcludedRanges(minimum, maximum, ranges?) {
         let numberOfValuesTExclude = 0;
         ranges.sort((current, next) => (current.minimum > next.minimum) ? 1 : (current.minimum === next.minimum) ? ((current.maximum > next.maximum) ? 1 : -1) : -1).forEach(function (range, index, arr) {
             if ((!range.minimum && range.minimum != 0) || !range.maximum) {
-                console.log('range', range)
                 throw new Error('Missing minimum or maximum in RANGES')
             }
             if (range.minimum > range.maximum) {
