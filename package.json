@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
+    "test": "node test.js",
     "upload": "npm version patch && npm publish"
   },
   "repository": {
@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@types/node": "^14.0.27",
-    "bluebird": "^3.7.2",
     "random-number-csprng": "^1.0.2",
     "typescript": "^3.9.7"
   }
